@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog'
+    'blog',
+    'django_summernote'
 ]
 
 MIDDLEWARE = [
@@ -120,7 +121,23 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Location of static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 20000000, # specify the file size
+}
