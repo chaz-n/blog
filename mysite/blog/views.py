@@ -2,7 +2,6 @@ from django.views import generic
 from .models import Post
 
 from django.shortcuts import render
-from django.http import  HttpResponse
 
 
 posts = [
@@ -25,8 +24,8 @@ def home(request):
     context = {
         'posts': posts
     }
-    return render(request, 'index.html', context)
+    return render(request, 'blog/index.html', context)
     
 
 def about(request):
-    return render(request, 'about.html', {'title': 'About'})
+    return render(request, 'blog/about.html', {'title': 'About'})
