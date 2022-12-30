@@ -1,1 +1,1 @@
-This is a project for a website using django
+# This is a project for a website using django
