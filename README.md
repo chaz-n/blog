@@ -1,1 +1,2 @@
-# This is a project for a website using django
+# Charlie Django Site
+
