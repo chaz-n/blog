@@ -1,6 +1,6 @@
 venv
 *.sqlite3
 .idea
-mysite/media
+media
 .env
 __pycache__
