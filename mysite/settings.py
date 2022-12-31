@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'users',
     'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -140,7 +141,9 @@ SUMMERNOTE_CONFIG = {
     'attachment_filesize_limit': 20000000,  # specify the file size
 }
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
