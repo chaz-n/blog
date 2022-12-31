@@ -9,6 +9,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from .forms import BlogPostForm
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
 
 # def home(request):
@@ -42,8 +44,8 @@ class PostDetailView(DetailView):
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
+    form_class = BlogPostForm
     model = Post
-    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -51,8 +53,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    form_class = BlogPostForm
     model = Post
-    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
