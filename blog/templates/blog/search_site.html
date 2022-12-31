@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% if searched %}
+        <h1>Search results for "{{ searched }}"</h1>
+        {% for result in results %}
+            <h1>{{ result}}</h1>
+            <p>{{ result.content }}</p>
+        {% endfor %}
+    {% else %}
+        <h1>Empty search request</h1>
+    {% endif %}
+{% endblock content %}

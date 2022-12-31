@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
@@ -77,6 +78,47 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
+# class SearchListView(ListView):
+#     template_name = 'blog/search_site.html'
+#     model = Post
+#     ordering = ['-created_on']
+#     paginate_by = 6
+#
+#
+#     def get_context_data(self, **kwargs):
+#         query = self.request.GET.get('searched')
+#         context = super().get_context_data(**kwargs)
+#         if query:
+#             context['results'] = Post.objects.filter(title__contains=query)
+#             context['query'] = query
+#         return context
+
+
+
+
+
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        if searched:
+            is_paginated = True
+        else:
+            is_paginated = False
+        results = Post.objects.filter(title__contains=searched)
+        paginator = Paginator(results, 2)  # Show 25 contacts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'blog/search_site.html',
+                      {'is_paginated':is_paginated,
+                       'searched': searched,
+                       'results': results,
+                       'page_obj': page_obj}
+                      )
+    else:
+        return render(request, 'blog/search_site.html')
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
