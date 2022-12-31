@@ -1,16 +1,23 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <h1 class="pb-4">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for post in posts %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
-            <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-              <small class="text-muted"> {{ post.created_on | date:"d F, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content | safe}}</p>
+        <article class="pb-4">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
+                    <p class="card-text">{{ post.content | safe}}</p>
+                    <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Read more</a>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'user-posts' post.author.username %}">
+                        <img class="rounded-circle img-fluid"
+                            style="width:40px;height:40px;"
+                            src="{{ post.author.profile.image.url }}"
+                             alt="profile_pic"></a>
+                    <a class="" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                    <small class="text-muted"> {{ post.created_on | date:"d F, Y" }}</small>
+                </div>
             </div>
         </article>
     {% endfor %}
