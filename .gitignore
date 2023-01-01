@@ -4,3 +4,4 @@ venv
 media
 .env
 __pycache__
+static_files
