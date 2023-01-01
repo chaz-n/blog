@@ -84,7 +84,7 @@ class SearchListView(ListView):
     model = Post
     ordering = ['-created_on']
     paginate_by = 6
-    context_object_name = 'results'
+    context_object_name = 'posts'
 
     def get_queryset(self):
         # original qs
