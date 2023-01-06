@@ -4,7 +4,7 @@ services:
       context: .
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./app:/app
+      - ./mysite:/mysite
     ports:
       - 8000:8000
     environment:

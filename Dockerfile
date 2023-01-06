@@ -7,14 +7,14 @@ RUN apk add --upgrade --no-cache build-base linux-headers && \
     pip install --upgrade pip && \
     pip install -r /requirements.txt
 
-COPY app/ /app
-WORKDIR /app
+COPY mysite/ /mysite
+WORKDIR /mysite
 
 COPY scripts/run.sh /run.sh
 RUN chmod +x /run.sh
 
 RUN adduser --disabled-password --no-create-home django
-RUN chown -R django:django /app
+RUN chown -R django:django /mysite
 
 USER django
 
