@@ -1,5 +1,5 @@
 services:
-  mysite:
+  app:
     build:
       context: .
     restart: always
@@ -12,7 +12,7 @@ services:
       context: ./docker/proxy
     restart: always
     depends_on:
-      - mysite
+      - app
     ports:
       - 80:80
       - 443:443
