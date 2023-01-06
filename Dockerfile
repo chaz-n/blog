@@ -14,6 +14,7 @@ COPY scripts/run.sh /run.sh
 RUN chmod +x /run.sh
 
 RUN adduser --disabled-password --no-create-home django
+RUN chown -R django:django /app
 
 USER django
 
