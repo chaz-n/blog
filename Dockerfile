@@ -10,8 +10,12 @@ RUN apk add --upgrade --no-cache build-base linux-headers && \
 COPY app/ /app
 WORKDIR /app
 
+COPY scripts/run.sh /run.sh
+RUN chmod +x /run.sh
+
 RUN adduser --disabled-password --no-create-home django
 
 USER django
 
-CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "app.wsgi"]
+#CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "app.wsgi"]
+CMD ["/run.sh"]
