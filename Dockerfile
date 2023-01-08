@@ -18,5 +18,5 @@ RUN chown -R django:django /mysite
 
 USER django
 
+RUN python manage.py collectstaic
 CMD ["uwsgi", "--socket", ":9000", "--workers", "4", "--master", "--enable-threads", "--module", "mysite.wsgi"]
-#CMD ["/run.sh"]
