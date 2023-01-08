@@ -1,7 +1,7 @@
 venv
 *.sqlite3
 .idea
-media
+media_files
 *.env
 __pycache__
 static_files
