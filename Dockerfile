@@ -10,9 +10,6 @@ RUN apk add --upgrade --no-cache build-base linux-headers && \
 COPY mysite/ /mysite
 WORKDIR /mysite
 
-COPY scripts/run.sh /run.sh
-RUN chmod +x /run.sh
-
 RUN adduser --disabled-password --no-create-home django
 RUN chown -R django:django /mysite
 
