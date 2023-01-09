@@ -19,7 +19,7 @@ services:
     environment:
       - POSTSGRES_PASSWORD=${POSTGRES_PASSWORD}
 
-  nginx:
+  proxy:
     build: ./nginx
     restart: always
     volumes:
@@ -33,6 +33,8 @@ services:
       - 443:443
     depends_on:
       - mysite
+    environment:
+      - DOMAIN=${DOMAIN}
 
   certbot:
     build:
@@ -45,7 +47,7 @@ services:
       - certbot-web:/vol/www
       - certbot-certs:/etc/letsencrypt/
     depends_on:
-      - nginx
+      - proxy
 
 volumes:
   postgres_data:
