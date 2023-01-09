@@ -36,11 +36,11 @@ server {
     }
 
 
-        location /static/ {
+    location /static/ {
         alias /mysite/static_files/;
     }
 
-        location /media/ {
+    location /media/ {
         alias /mysite/media_files/;
     }
 
