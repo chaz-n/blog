@@ -45,7 +45,7 @@ services:
       - certbot-web:/vol/www
       - certbot-certs:/etc/letsencrypt/
     depends_on:
-      - proxy
+      - nginx
 
 volumes:
   postgres_data:
