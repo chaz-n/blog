@@ -36,7 +36,7 @@ services:
 
   certbot:
     build:
-      context: ./docker/certbot
+      context: ./certbot
     command: echo "Skipping..."
     environment:
       - EMAIL=${ACME_DEFAULT_EMAIL}
