@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY ./nginx/* /etc/nginx/
+COPY ./* /etc/nginx/
 COPY ./run.sh /run.sh
 
 USER root
