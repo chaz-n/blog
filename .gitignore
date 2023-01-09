@@ -1,7 +1,9 @@
 venv
 *.sqlite3
 .idea
-media_files
 *.env
 __pycache__
 static_files
+
+mysite/media_files/*
+!mysite/media_files/default.jpg
