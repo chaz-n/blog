@@ -30,7 +30,6 @@ server {
 
     location / {
         proxy_pass http://mysite;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $host;
         proxy_redirect off;
     }
