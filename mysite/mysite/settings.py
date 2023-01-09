@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "setmeinprod")
 DEBUG = int(os.environ.get("DJANGO_DEBUG", default=0))
 
 ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DOMAIN").split(',')
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = [] if DEBUG else os.environ.get("DOMAIN").split(',')
 
 # Application definition
 
