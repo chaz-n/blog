@@ -42,6 +42,7 @@ server {
         proxy_pass http://mysite;
         proxy_set_header Host $host;
         proxy_redirect off;
+        client_max_body_size 10M;
     }
 
 
