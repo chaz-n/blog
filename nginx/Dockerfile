@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-COPY ./* /etc/nginx/
+COPY ./proxy/* /etc/nginx/
 COPY ./run.sh /run.sh
 
 
