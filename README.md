@@ -19,6 +19,11 @@ This is a personal blog / potential portfolio website built using the Python Dja
 <br>
 
 ## Deployment:
+* PostgresSQL is used for the production database
+* Gunicorn is used as the production WSGI server
+* Nginx acts as a reverse proxy for gunicorn
+* Certbot is used to grab and renew Let's Encrypt SSL certificates
+
 These instructions assume that a VPS has been set up, with a domain pointing at its public IPv4 
 and that docker and docker compose has been installed.
 
