@@ -16,6 +16,7 @@ This is a personal blog / potential portfolio website built using the Python Dja
 ## Planned features:
 * ### Not a clue
 
+<br>
 
 ## Deployment:
 These instructions assume that a VPS has been set up, with a domain pointing at its public IPv4 
