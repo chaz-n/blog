@@ -48,5 +48,5 @@ jobs:
     runs-on: self-hosted
     
     steps:
-      run: |
-        ls
+      - run: |
+          ls
