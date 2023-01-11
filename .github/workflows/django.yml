@@ -14,6 +14,19 @@ jobs:
       max-parallel: 4
       matrix:
         python-version: [3.9]
+    env:
+      DJANGO_DEBUG: 1
+      SECRET_KEY: change_me
+      SQL_ENGINE: django.db.backends.postgresql
+      SQL_DATABASE: postgres
+      SQL_USER: postgres
+      SQL_PASSWORD: test
+      SQL_HOST: db
+      SQL_PORT: 5432
+      DATABASE: postgres
+      POSTGRES_PASSWORD: test
+      ACME_DEFAULT_EMAIL: email@example.com
+      DOMAIN: localhost
 
     steps:
     - uses: actions/checkout@v3
