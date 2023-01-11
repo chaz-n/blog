@@ -49,4 +49,4 @@ jobs:
     
     steps:
       - run: |
-          ls
+          docker compose -f docker-compose-deploy.yml down
