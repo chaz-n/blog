@@ -45,8 +45,17 @@ jobs:
         
   deploy:
   
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     steps:
-      - run: |
-          docker compose -f docker-compose-deploy.yml down
+        - name: executing remote ssh commands
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSHKEY }}
+            port: 22
+            script: |
+              cd blog
+              git pull
+              docker-compose -f docker-compose-deploy.yml down
