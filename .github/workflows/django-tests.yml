@@ -42,3 +42,11 @@ jobs:
       working-directory: ./mysite
       run: |
         python manage.py test
+        
+  deploy:
+  
+    runs-on: self-hosted
+    
+    steps:
+      run: |
+        ls
