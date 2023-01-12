@@ -11,7 +11,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9]
+        python-version: [3.10]
     env:
       DJANGO_DEBUG: 1
       SECRET_KEY: change_me
@@ -29,8 +29,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4.5.0
       with:
+        cache: pip
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
