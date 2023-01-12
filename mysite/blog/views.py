@@ -1,3 +1,4 @@
+import os
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -104,4 +105,6 @@ class SearchListView(ListView):
 
 
 def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+    with open(f'{os.path.dirname(os.getcwd())}/README.md') as file:
+        readme = file.read()
+    return render(request, 'blog/about.html', {'title': 'About', 'readme':readme})

@@ -1,4 +1,6 @@
 {% extends "blog/base.html" %}
+{% load markdownify %}
 {% block content %}
-    <h1>This is theAbout page</h1>
+    <h1>About page</h1>
+    {{ readme | markdownify }}
 {% endblock content %}
