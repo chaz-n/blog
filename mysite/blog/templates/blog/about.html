@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
-{% load markdownify %}
+{% load static %}
 {% block content %}
     <h1>About page</h1>
-    {{ readme | markdownify }}
+    {{ readme | safe }}
 {% endblock content %}

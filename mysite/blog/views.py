@@ -13,6 +13,7 @@ from django.views.generic import (
 )
 from .forms import BlogPostForm
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+import markdown
 
 
 # def home(request):
@@ -105,6 +106,7 @@ class SearchListView(ListView):
 
 
 def about(request):
-    with open(f'{os.path.dirname(os.getcwd())}/README.md') as file:
-        readme = file.read()
-    return render(request, 'blog/about.html', {'title': 'About', 'readme':readme})
+    with open(f'{os.path.dirname(os.getcwd())}/README.md') as input_file:
+        text = input_file.read()
+    readme = markdown.markdown(text)
+    return render(request, 'blog/about.html', {'title': 'About', 'readme': readme})
