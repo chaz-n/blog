@@ -1,6 +1,10 @@
 {% extends "blog/base.html" %}
 {% load static %}
+{% block additionalStyles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/markdown.css' %}">
+{% endblock %}
 {% block content %}
-    <h1>About page</h1>
+    <h6>This page contains the content of the project's README.md:</h6>
+    <br>
     {{ readme | safe }}
 {% endblock content %}
