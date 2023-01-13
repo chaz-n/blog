@@ -1,11 +1,4 @@
 /* Markdown Style */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    line-height: 1.6;
-    color: #f6f8fa; /* change color to light */
-    background-color: #24292e; /* change background color to dark */
-    margin: 0 auto;
-}
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
@@ -25,25 +18,6 @@ h2 {
 
 h3,h4,h5,h6 {
     font-size: 1.2em;
-}
-
-/* Links */
-a {
-    color: #0366d6; /* change color to light */
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-
-/* Lists */
-ul, ol {
-    margin-top: 0;
-    margin-bottom: 1em;
-    padding-left: 2em;
-}
-li {
-    margin-bottom: 0.5em;
 }
 
 /* Code */
