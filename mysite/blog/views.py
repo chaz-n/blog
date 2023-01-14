@@ -106,7 +106,4 @@ class SearchListView(ListView):
 
 
 def about(request):
-    with open(f'{os.path.dirname(os.getcwd())}/README.md') as input_file:
-        text = input_file.read()
-    readme = markdown.markdown(text)
-    return render(request, 'blog/about.html', {'title': 'About', 'readme': readme})
+    return render(request, 'blog/about.html', {'title': 'About'})

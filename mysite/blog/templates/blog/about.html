@@ -2,16 +2,6 @@
 {% load static %}
 
 {% block content %}
-    {% block additionalStyles %}
-        <link rel="stylesheet" type="text/css" href="{% static 'blog/markdown.css' %}">
-    {% endblock %}
-
-    <h6>This page contains the content of the project's README.md:</h6>
-    <br>
-        <body>
-            {{ readme | safe }}
-        </body>
-
-
+    <h6>About</h6>
 
 {% endblock content %}
