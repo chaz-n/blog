@@ -1,27 +1,58 @@
 services:
   mysite:
-    build:
-      context: .
-    command: python manage.py runserver 0.0.0.0:8000
+    build: .
+    command: gunicorn mysite.wsgi:application --bind 0.0.0.0:8000
     restart: always
     volumes:
-      - ./mysite:/mysite
-    ports:
+      - static_volume:/mysite/static_files
+      - media_volume:/mysite/media_files
+    expose:
       - 8000:8000
     env_file:
-      - .env
+      - ./.env
     depends_on:
       - db
-
   db:
     image: postgres:15.1-alpine
-    restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  proxy:
+    build: ./nginx
+    restart: always
+    volumes:
+      - static_volume:/mysite/static_files
+      - media_volume:/mysite/media_files
+      - certbot-web:/vol/www
+      - proxy-dhparams:/vol/proxy
+      - certbot-certs:/etc/letsencrypt
     ports:
-      - 5432:5432
+      - 80:80
+      - 443:443
+    depends_on:
+      - mysite
+    environment:
+      - DOMAIN=${DOMAIN}
+
+  certbot:
+    build:
+      context: ./certbot
+    command: echo "Skipping..."
+    environment:
+      - EMAIL=${ACME_DEFAULT_EMAIL}
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - certbot-web:/vol/www
+      - certbot-certs:/etc/letsencrypt/
+    depends_on:
+      - proxy
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
+  certbot-web:
+  proxy-dhparams:
+  certbot-certs:
