@@ -55,4 +55,4 @@ jobs:
         script: |
           cd blog
           git pull
-          docker compose -f docker-compose-deploy.yml up -d --build
+          docker compose up -d --build
