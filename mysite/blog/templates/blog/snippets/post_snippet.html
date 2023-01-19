@@ -2,7 +2,7 @@
     <div class="card" style="width: 100%;">
         <div class="card-body">
             <h4><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
-            <p>{{ post.content | slice:200| striptags}}</p>
+            <p>{{ post.content | slice:500| striptags}}</p>
             <a href="{% url 'post-detail' post.id %}" class="btn btn-secondary">Read more</a>
         </div>
         <div class="card-footer">

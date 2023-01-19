@@ -6,6 +6,7 @@ pre {
     font-size: 85%;
     line-height: 1.45;
     font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    color: white;
 }
 code {
     background: transparent;
