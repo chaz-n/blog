@@ -1,9 +1,13 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1 class="pb-4">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    <div class="col-md-8">
+
+    <h1 class="pb-4">Published posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for post in posts %}
         {% include 'blog/snippets/post_snippet.html' %}
     {% endfor %}
+
+    </div>
 
     {% include 'blog/snippets/pagination.html' %}
 {% endblock content %}

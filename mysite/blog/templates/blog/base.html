@@ -51,7 +51,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="{% url 'post-create' %}">Create Post</a></li>
+                                <li><a class="dropdown-item" href="{% url 'post-create' %}">Create new post</a></li>
+                                <li><a class="dropdown-item" href="{% url 'my-posts' %}">My posts</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

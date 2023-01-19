@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    <div class="col-md-8">
+
     {% if query %}
         <h1>Search results for "{{ query }}"</h1>
         <br>
@@ -10,6 +12,8 @@
     {% else %}
         <h1>Empty search request</h1>
     {% endif %}
+
+    </div>
 
     {% include 'blog/snippets/pagination.html'  with search=True %}
 {% endblock content %}

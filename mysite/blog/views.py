@@ -12,8 +12,7 @@ from django.views.generic import (
     DeleteView,
 )
 from .forms import BlogPostForm
-from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
-import markdown
+from django.contrib.auth.decorators import login_required
 
 
 # def home(request):
@@ -30,6 +29,11 @@ class PostListView(ListView):
     ordering = ['-created_on']
     paginate_by = 6
 
+    def get_queryset(self):
+        posts = super().get_queryset()
+        return posts.filter(status=1)
+
+
 
 class UserPostListView(ListView):
     model = Post
@@ -39,7 +43,7 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-created_on')
+        return Post.objects.filter(author=user, status=1).order_by('-created_on')
 
 
 class PostDetailView(DetailView):
@@ -94,7 +98,7 @@ class SearchListView(ListView):
         # filter by a variable captured from url, for example
         query = self.request.GET.get('searched')
         if query:
-            return qs.filter(title__contains=query)
+            return qs.filter(title__contains=query, status=1)
         return qs
 
     def get_context_data(self, **kwargs):
@@ -102,6 +106,23 @@ class SearchListView(ListView):
         context = super().get_context_data(**kwargs)
         if query:
             context['query'] = query
+        return context
+
+
+class MyPostListView(ListView):
+    model = Post
+    template_name = 'blog/my_posts.html'   # <app>/<model>_<view type>.html
+    context_object_name = 'posts'
+    paginate_by = 6
+
+    def get_queryset(self):
+        user = self.request.user
+        return Post.objects.filter(author=user).order_by('-created_on')
+
+    def get_context_data(self, **kwargs):
+        user = self.request.user
+        context = super().get_context_data(**kwargs)
+        context['user'] = user
         return context
 
 

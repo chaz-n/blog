@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <h1 class="pb-4">My posts ({{ user }}) ({{ page_obj.paginator.count }})</h1>
+    <div class="col-md-8">
+
+    {% for post in posts %}
+        {% if post.status == 1 %}
+
+             <article class="pb-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h4><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+                        <p>{{ post.content | slice:200| striptags}}</p>
+                        <a href="{% url 'post-detail' post.id %}" class="btn btn-secondary">Read more</a>
+                    </div>
+                    <div class="card-footer bg-success-subtle">
+                        <a href="{% url 'user-posts' post.author.username %}">
+                            <img class="rounded-circle img-fluid"
+                                style="width:40px;height:40px;"
+                                src="{{ post.author.profile.image.url }}"
+                                 alt="profile_pic"></a>
+                        <a class="" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                        <small class="text-muted"> {{ post.created_on | date:"d F, Y" }}</small>
+                        <small class="ms-5"> Published </small>
+                    </div>
+                </div>
+            </article>
+
+        {% else %}
+
+             <article class="pb-4">
+                <div class="card" style="width: 100%;">
+                    <div class="card-body">
+                        <h4><a class="card-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
+                        <p>{{ post.content | slice:200| striptags}}</p>
+                        <a href="{% url 'post-detail' post.id %}" class="btn btn-secondary">Read more</a>
+                    </div>
+                    <div class="card-footer bg-danger-subtle">
+                        <a href="{% url 'user-posts' post.author.username %}">
+                            <img class="rounded-circle img-fluid"
+                                style="width:40px;height:40px;"
+                                src="{{ post.author.profile.image.url }}"
+                                 alt="profile_pic"></a>
+                        <a class="" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                        <small class="text-muted"> {{ post.created_on | date:"d F, Y" }}</small>
+                        <small class="ms-5"> Draft </small>
+                    </div>
+                </div>
+            </article>
+
+        {% endif %}
+
+    {% endfor %}
+
+    </div>
+
+    {% include 'blog/snippets/pagination.html' %}
+{% endblock content %}
