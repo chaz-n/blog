@@ -13,6 +13,7 @@ from django.views.generic import (
 )
 from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 
 
 # def home(request):
@@ -48,6 +49,19 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+    def get_object(self, queryset=None):
+        """This checks to see if a post is saved in the db as a draft. If it is then it checks to see
+        if the currently logged-in user is the author, if it is the post is rendered. If it isn't than
+        a 404 is raised."""
+        post = super().get_object(queryset)
+        if post.status == 0:
+            if post.author == self.request.user:
+                return post
+            else:
+                raise Http404()
+        else:
+            return post
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
