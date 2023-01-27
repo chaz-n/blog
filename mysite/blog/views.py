@@ -112,7 +112,7 @@ class SearchListView(ListView):
         # filter by a variable captured from url, for example
         query = self.request.GET.get('searched')
         if query:
-            return qs.filter(title__contains=query, status=1)
+            return qs.filter(title__icontains=query, status=1)
         return qs
 
     def get_context_data(self, **kwargs):
