@@ -13,3 +13,5 @@ six==1.16.0
 sqlparse==0.4.3
 tinycss2==1.1.1
 webencodings==0.5.1
+
+djangorestframework~=3.14.0
