@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as users_views
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,7 +41,8 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
     path('summernote/', include('django_summernote.urls')),
-    path('api/', include('api.urls'))
+    path('api/', include('api.urls')),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
 ]
 
 if settings.DEBUG:
