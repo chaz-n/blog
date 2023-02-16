@@ -63,6 +63,12 @@ class PostDetailView(DetailView):
         else:
             return post
 
+    def get_context_data(self, queryset=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = super().get_object(queryset)
+        context['title'] = post.title
+        return context
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     form_class = BlogPostForm
