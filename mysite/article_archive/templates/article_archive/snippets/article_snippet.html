@@ -1,0 +1,19 @@
+ <article class="pb-4">
+    <div class="card" style="width: 100%;">
+        <div class="card-body">
+            <h4><a class="card-title" href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h4>
+            <p>{{ article.summary | slice:500| striptags}}</p>
+            <a href="" class="btn btn-secondary">Read more</a>
+        </div>
+        <div class="card-footer">
+            <h6>Saved by:</h6>
+            <a href="">
+                <img class="rounded-circle img-fluid"
+                    style="width:40px;height:40px;"
+                    src="{{ article.saved_by.profile.image.url }}"
+                     alt="profile_pic"></a>
+            <a class="" href="">{{ article.saved_by }}</a>
+            <small class="text-muted"> {{ article.saved_on | date:"d F, Y" }}</small>
+        </div>
+    </div>
+</article>

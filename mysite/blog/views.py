@@ -15,7 +15,6 @@ from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
-
 # def home(request):
 #     context = {
 #         'posts': Post.objects.all(),

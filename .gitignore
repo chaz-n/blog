@@ -5,6 +5,7 @@ env
 *.env
 __pycache__
 static_files
+.vscode
 
 mysite/media_files/*
 !mysite/media_files/default.jpg

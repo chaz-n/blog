@@ -13,12 +13,22 @@ from django.views.generic import (
 
 class ArticleListView(ListView):
     model = Article
-    template_name = 'blog/index.html'   # <app>/<model>_<view type>.html
+    template_name = 'article_archive/index.html'   # <app>/<model>_<view type>.html
     context_object_name = 'articles'
     ordering = ['-saved_on']
     paginate_by = 6
 
-    def get_queryset(self):
-        articles = super().get_queryset()
-        return
 
+class ArticleDetailView(DetailView):
+    model = Article
+
+
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = '/article-archive'
+
+    def test_func(self):
+        article = self.get_object()
+        if self.request.user == article.saved_by:
+            return True
+        return False
