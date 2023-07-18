@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <form method="post">
+                <legend class="border-bottom mb-4">Upload an Article</legend>
+                {{ article_form | crispy }}
+                <button class="btn btn-outline-info" id="upload_button" type="submit">Upload</button>
+            </form>
+        </form>
+    </div>
+{% endblock content %}

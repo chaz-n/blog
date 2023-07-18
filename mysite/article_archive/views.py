@@ -1,4 +1,7 @@
+import datetime
+from django.utils import timezone
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import Article
 from django.views.generic import (
     ListView,
@@ -7,6 +10,11 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import ArticleURLForm
+from newspaper import Article as ArticleParser
+import nltk
+
 
 # Create your views here.
 
@@ -32,3 +40,38 @@ class ArticleDeleteView(DeleteView):
         if self.request.user == article.saved_by:
             return True
         return False
+
+
+def article_upload(request):
+    nltk.download('punkt')
+
+    article_form = ArticleURLForm()
+
+    context = {
+        'article_form': article_form
+    }
+
+    if request.method == "POST":
+        article_form = ArticleURLForm(request.POST)
+        context['article_form'] = article_form
+
+        if article_form.is_valid():
+            data = article_form.cleaned_data
+            article_url = data['article_url']
+
+            print(article_url)
+            article_object = ArticleParser(article_url)
+            article_object.download()
+            article_object.parse()
+            article_object.nlp()
+
+            print(article_object.keywords)
+
+            new_article = Article.objects.create(title=article_object.title,
+                                                 url=article_url,
+                                                 summary=article_object.summary,
+                                                 article_date=timezone.now(),
+                                                 saved_on=timezone.now(),
+                                                 saved_by=request.user)
+
+    return render(request, 'article_archive/article_upload.html', context)
