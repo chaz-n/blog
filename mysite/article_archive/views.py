@@ -13,7 +13,6 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import ArticleURLForm
 from newspaper import Article as ArticleParser
-import nltk
 
 
 # Create your views here.
@@ -43,7 +42,6 @@ class ArticleDeleteView(DeleteView):
 
 
 def article_upload(request):
-    nltk.download('punkt')
 
     article_form = ArticleURLForm()
 
@@ -63,13 +61,10 @@ def article_upload(request):
             article_object = ArticleParser(article_url)
             article_object.download()
             article_object.parse()
-            article_object.nlp()
-
-            print(article_object.keywords)
 
             new_article = Article.objects.create(title=article_object.title,
                                                  url=article_url,
-                                                 summary=article_object.summary,
+                                                 summary=article_object.text,
                                                  article_date=timezone.now(),
                                                  saved_on=timezone.now(),
                                                  saved_by=request.user)
